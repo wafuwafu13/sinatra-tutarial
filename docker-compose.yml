@@ -19,3 +19,7 @@ services:
       - /var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=secret
+  nginx:
+    image: nginx:latest
+    ports:
+      - 127.0.0.1:3000:80
