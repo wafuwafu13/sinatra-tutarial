@@ -23,3 +23,6 @@ services:
     image: nginx:latest
     ports:
       - 127.0.0.1:3000:80
+    volumes:
+      - ./public:/usr/share/nginx/html
+
