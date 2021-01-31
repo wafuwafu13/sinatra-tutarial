@@ -61,5 +61,15 @@ get '/initialize' do
       )
       EOS
     )
+    client.query(<<-EOS
+      CREATE TABLE IF NOT EXISTS people (
+        id   INT AUTO_INCREMENT,
+        name TEXT,
+        gender TEXT,
+        hobby TEXT,
+        PRIMARY KEY(id)
+      )
+      EOS
+    )
     redirect '/'
 end
