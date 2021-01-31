@@ -1,0 +1,16 @@
+<form action="/people" method="post">
+  <input name="name" placeholder="名前" />
+  <input name="gender" placeholder="性別" />
+  <input name="hobby" placeholder="趣味" />
+  <button type="submit">送信</button>
+</form>
+
+<table>
+  <% people.each do |p| %>
+    <tr>
+      <td><%= p[:name] %></td>
+      <td><%= p[:gender] %></td>
+      <td><%= p[:hobby] %></td>
+    </tr>
+  <% end %>
+</table>

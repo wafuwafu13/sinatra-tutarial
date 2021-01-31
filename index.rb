@@ -18,6 +18,18 @@ post '/' do
     redirect back
 end
 
+get '/people' do
+  people = people_fetch
+  erb :people, locals: {
+    people: people
+  }
+end
+
+post '/people' do
+  people_push(params['name'], params['gender'], params['hobby'])
+  redirect back
+end
+
 def add_suffix(chat)
     { **chat, content: "#{chat[:content]}も"}
 end
@@ -37,9 +49,19 @@ def chat_push(content, name="名無し")
       "INSERT into chats (name, content, time) VALUES (?, ?, NOW())"
     ).execute(name, content)
 end
+
+def people_push(name, gender, hobby)
+  db_client.prepare(
+    "INSERT into people (name, gender, hobby) VALUES (?, ?, ?)"
+  ).execute(name, gender, hobby)
+end
   
 def chats_fetch()
   db_client.query("SELECT * FROM chats ORDER BY time DESC")
+end
+
+def people_fetch()
+  db_client.query("SELECT * FROM people")
 end
 
 get '/initialize' do
