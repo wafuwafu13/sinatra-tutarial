@@ -19,10 +19,7 @@ post '/' do
 end
 
 get '/people' do
-  people = people_fetch
-  erb :people, locals: {
-    people: people
-  }
+  erb :people
 end
 
 post '/people' do
